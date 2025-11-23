@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告管理系统 - 控制台</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="dashboard">
+    <header class="header">
+        <h1>广告管理系统</h1>
+        <div class="user-info">
+            <span id="currentUser">管理员</span>
+            <button onclick="logout()" class="btn btn-secondary">退出</button>
+        </div>
+    </header>
+
+    <nav class="sidebar">
+        <ul>
+            <li><a href="dashboard.html" class="active">控制台</a></li>
+            <li><a href="ad-list.html">广告管理</a></li>
+            <li><a href="ad-form.html">新建广告</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="stats">
+            <div class="stat-card">
+                <h3>总广告数</h3>
+                <p id="totalAds">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>在线广告</h3>
+                <p id="activeAds">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>今日展示</h3>
+                <p id="todayImpressions">0</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/api/api.js"></script>
+<script src="js/auth.js"></script>
+<script>
+    // 加载统计数据
+    async function loadStats() {
+        try {
+            const ads = await api.get('/api/ads');
+            if (ads.success) {
+                const total = ads.data.length;
+                const active = ads.data.filter(ad => ad.status === 1).length;
+                const impressions = ads.data.reduce((sum, ad) => sum + (ad.currentImpressions || 0), 0);
+
+                document.getElementById('totalAds').textContent = total;
+                document.getElementById('activeAds').textContent = active;
+                document.getElementById('todayImpressions').textContent = impressions;
+            }
+        } catch (error) {
+            console.error('加载统计数据失败:', error);
+        }
+    }
+
+    // 页面加载完成后执行
+    document.addEventListener('DOMContentLoaded', function() {
+        checkLoginStatus();
+        loadStats();
+    });
+</script>
+</body>
+</html>
