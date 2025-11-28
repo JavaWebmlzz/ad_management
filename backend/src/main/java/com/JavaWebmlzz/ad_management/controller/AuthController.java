@@ -15,6 +15,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000",
+        allowedHeaders = "*",  // 允许所有头
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS}) // 跨域资源共享，3000端口号
 public class AuthController {
 
     private final AdminUserService adminUserService;

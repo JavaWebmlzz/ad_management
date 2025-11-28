@@ -12,6 +12,8 @@ public interface AdminUserService {
 
     Optional<AdminUser> getUserByUsername(String username);
 
+    Optional<AdminUser> getUserByEmail(String email); // 新增方法
+
     List<AdminUser> getAllUsers();
 
     AdminUser updateUser(AdminUser user);

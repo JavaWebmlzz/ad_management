@@ -34,6 +34,11 @@ public class AdminUserServiceImpl implements AdminUserService {
     }
 
     @Override
+    public Optional<AdminUser> getUserByEmail(String email) {
+        return adminUserRepository.findByEmail(email);
+    }
+
+    @Override
     public List<AdminUser> getAllUsers() {
         return adminUserRepository.findAll();
     }

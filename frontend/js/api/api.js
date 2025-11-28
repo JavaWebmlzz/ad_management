@@ -1,4 +1,6 @@
 // API调用封装
+import utils from "../utils.js";
+
 const api = {
     baseURL: 'http://localhost:8080',
 
@@ -62,3 +64,5 @@ const api = {
         });
     }
 };
+
+export default api;

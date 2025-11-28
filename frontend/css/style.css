@@ -259,6 +259,23 @@ tr:hover {
     font-weight: bold;
 }
 
+/* 注册链接样式 */
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.login-link a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
 .status-0 { background: #ffc107; color: #000; } /* 待审核 */
 .status-1 { background: #28a745; color: white; } /* 已上线 */
 .status-2 { background: #6c757d; color: white; } /* 已下线 */

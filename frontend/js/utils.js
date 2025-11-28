@@ -47,3 +47,5 @@ const utils = {
         window.location.href = url;
     }
 };
+
+export default utils;

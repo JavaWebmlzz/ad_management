@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告管理系统 - 注册</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="login-container">
+    <div class="login-form">
+        <h2>管理员注册</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label>用户名 *</label>
+                <input type="text" id="username" name="username" required minlength="3" maxlength="50">
+            </div>
+            <div class="form-group">
+                <label>真实姓名</label>
+                <input type="text" id="realName" name="realName" maxlength="50">
+            </div>
+            <div class="form-group">
+                <label>邮箱 *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>密码 *</label>
+                <input type="password" id="password" name="password" required minlength="6">
+            </div>
+            <div class="form-group">
+                <label>确认密码 *</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <button type="submit" class="btn btn-primary">注册</button>
+        </form>
+        <div class="login-link">
+            <p>已有账号？ <a href="index.html">立即登录</a></p>
+        </div>
+        <div id="message" class="message"></div>
+    </div>
+</div>
+<script type="module" src="js/utils.js"></script>
+<script type="module" src="js/api/api.js"></script>
+<script type="module" src="js/auth.js"></script>
+</body>
+</html>

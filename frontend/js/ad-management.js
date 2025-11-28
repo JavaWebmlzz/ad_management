@@ -1,3 +1,6 @@
+import api from './api/api';
+import utils from './utils'
+
 // 广告管理功能
 const adManager = {
     // 加载广告列表
