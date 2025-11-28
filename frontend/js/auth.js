@@ -1,6 +1,6 @@
 // 认证相关功能
 const auth = {
-    // 登录
+    // auth.js - 修改登录方法
     async login(username, password) {
         try {
             const result = await api.post('/api/auth/login', {
@@ -9,9 +9,9 @@ const auth = {
             });
 
             if (result.success) {
-                // 保存token和用户信息（实际项目中token应该从响应中获取）
-                localStorage.setItem('admin_token', 'demo-token-' + Date.now());
-                localStorage.setItem('admin_user', username);
+                // 保存token和用户信息
+                localStorage.setItem('admin_token', result.data.token);
+                localStorage.setItem('admin_user', result.data.user);
                 utils.showMessage('登录成功', 'success');
 
                 setTimeout(() => {

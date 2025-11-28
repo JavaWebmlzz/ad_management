@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告管理 - 新建广告</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="dashboard">
+    <header class="header">
+        <h1>广告管理系统</h1>
+        <div class="user-info">
+            <span id="currentUser">管理员</span>
+            <button onclick="logout()" class="btn btn-secondary">退出</button>
+        </div>
+    </header>
+
+    <nav class="sidebar">
+        <ul>
+            <li><a href="dashboard.html">控制台</a></li>
+            <li><a href="ad-list.html">广告管理</a></li>
+            <li><a href="ad-form.html" class="active">新建广告</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h2 id="formTitle">新建广告</h2>
+            <a href="ad-list.html" class="btn btn-secondary">返回列表</a>
+        </div>
+
+        <div class="form-container">
+            <form id="adForm">
+                <input type="hidden" id="adId">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="title">广告标题 *</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">广告类型 *</label>
+                        <select id="type" name="type" required>
+                            <option value="">请选择类型</option>
+                            <option value="IMAGE">图片广告</option>
+                            <option value="TEXT">文字广告</option>
+                            <option value="VIDEO">视频广告</option>
+                            <option value="HTML">HTML广告</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="adSpaceId">广告位 *</label>
+                        <select id="adSpaceId" name="adSpaceId" required>
+                            <option value="">请选择广告位</option>
+                            <option value="1">首页横幅</option>
+                            <option value="2">侧边栏</option>
+                            <option value="3">文章页</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="priority">优先级</label>
+                        <input type="number" id="priority" name="priority" value="1" min="1" max="10">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="imageUrl">图片URL</label>
+                    <input type="url" id="imageUrl" name="imageUrl" placeholder="https://example.com/image.jpg">
+                </div>
+
+                <div class="form-group">
+                    <label for="linkUrl">跳转链接</label>
+                    <input type="url" id="linkUrl" name="linkUrl" placeholder="https://example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="content">广告内容</label>
+                    <textarea id="content" name="content" rows="4" placeholder="对于文字广告，这里输入广告文案；对于HTML广告，这里输入HTML代码"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startTime">开始时间</label>
+                        <input type="datetime-local" id="startTime" name="startTime">
+                    </div>
+                    <div class="form-group">
+                        <label for="endTime">结束时间</label>
+                        <input type="datetime-local" id="endTime" name="endTime">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="maxImpressions">最大展示次数</label>
+                    <input type="number" id="maxImpressions" name="maxImpressions" placeholder="0表示无限制">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">保存广告</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='ad-list.html'">取消</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="message" class="message" style="display: none;"></div>
+    </main>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/api/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/ad-management.js"></script>
+<script>
+    // 页面加载完成后执行
+    document.addEventListener('DOMContentLoaded', function() {
+        checkLoginStatus();
+        setupForm();
+    });
+</script>
+</body>
+</html>

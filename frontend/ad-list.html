@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告管理 - 广告列表</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="dashboard">
+    <header class="header">
+        <h1>广告管理系统</h1>
+        <div class="user-info">
+            <span id="currentUser">管理员</span>
+            <button onclick="logout()" class="btn btn-secondary">退出</button>
+        </div>
+    </header>
+
+    <nav class="sidebar">
+        <ul>
+            <li><a href="dashboard.html">控制台</a></li>
+            <li><a href="ad-list.html" class="active">广告管理</a></li>
+            <li><a href="ad-form.html">新建广告</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h2>广告列表</h2>
+            <a href="ad-form.html" class="btn btn-primary">新建广告</a>
+        </div>
+
+        <div class="filters">
+            <select id="statusFilter" onchange="loadAds()">
+                <option value="">全部状态</option>
+                <option value="0">待审核</option>
+                <option value="1">已上线</option>
+                <option value="2">已下线</option>
+                <option value="3">已过期</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="搜索广告标题..." onkeyup="loadAds()">
+        </div>
+
+        <div class="table-container">
+            <table id="adsTable">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>广告标题</th>
+                    <th>类型</th>
+                    <th>状态</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                    <th>展示次数</th>
+                    <th>点击次数</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="adsTableBody">
+                <!-- 广告数据将通过JavaScript动态加载 -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="loadingMessage" class="message">加载中...</div>
+        <div id="message" class="message" style="display: none;"></div>
+    </main>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/api/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/ad-management.js"></script>
+<script>
+    // 页面加载完成后执行
+    document.addEventListener('DOMContentLoaded', function() {
+        checkLoginStatus();
+        loadAds();
+    });
+</script>
+</body>
+</html>
